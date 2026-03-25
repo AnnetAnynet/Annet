@@ -311,23 +311,24 @@
 
   <script>
     (function () {
-      var BOT_BASE = 'tg://resolve?domain=annetcloud_bot&start=';
-      var DEFAULT_START = 'code_mangadzen2026';
+      var BOT_HREF = 'tg://resolve?domain=annetcloud_bot';
 
       function buildStartPayload() {
         var raw = new URLSearchParams(window.location.search).get('start_code');
-        if (!raw) return DEFAULT_START;
+        if (!raw) return null;
         raw = raw.trim();
-        if (!raw) return DEFAULT_START;
+        if (!raw) return null;
         var sanitized = raw.replace(/[^a-zA-Z0-9_-]/g, '');
-        if (!sanitized) return DEFAULT_START;
+        if (!sanitized) return null;
         var payload = 'code_' + sanitized;
         return payload.length > 64 ? payload.slice(0, 64) : payload;
       }
 
       function updateBotLinks() {
-        var start = buildStartPayload();
-        var href = BOT_BASE + encodeURIComponent(start);
+        var payload = buildStartPayload();
+        var href = payload
+          ? BOT_HREF + '&start=' + encodeURIComponent(payload)
+          : BOT_HREF;
         document.querySelectorAll('a[href^="tg://resolve?domain=annetcloud_bot"]').forEach(function (a) {
           a.href = href;
         });
