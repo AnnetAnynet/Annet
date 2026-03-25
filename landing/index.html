@@ -309,5 +309,37 @@
     </div>
   </footer>
 
+  <script>
+    (function () {
+      var BOT_BASE = 'tg://resolve?domain=annetcloud_bot&start=';
+      var DEFAULT_START = 'code_mangadzen2026';
+
+      function buildStartPayload() {
+        var raw = new URLSearchParams(window.location.search).get('start_code');
+        if (!raw) return DEFAULT_START;
+        raw = raw.trim();
+        if (!raw) return DEFAULT_START;
+        var sanitized = raw.replace(/[^a-zA-Z0-9_-]/g, '');
+        if (!sanitized) return DEFAULT_START;
+        var payload = 'code_' + sanitized;
+        return payload.length > 64 ? payload.slice(0, 64) : payload;
+      }
+
+      function updateBotLinks() {
+        var start = buildStartPayload();
+        var href = BOT_BASE + encodeURIComponent(start);
+        document.querySelectorAll('a[href^="tg://resolve?domain=annetcloud_bot"]').forEach(function (a) {
+          a.href = href;
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', updateBotLinks);
+      } else {
+        updateBotLinks();
+      }
+    })();
+  </script>
+
 </body>
 </html>
