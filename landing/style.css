@@ -1954,6 +1954,7 @@ html.reveal-pending .reveal.revealed {
   .step-connector {
     flex-direction: row;
     padding: 12px 0;
+    transform: rotate(90deg);
   }
 
   .step-connector svg {
@@ -2022,7 +2023,6 @@ html.reveal-pending .reveal.revealed {
 
   .plan-popular {
     transform: none;
-    order: -1;
   }
 
   .plan-popular:hover {
