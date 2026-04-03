@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Открываем Telegram — Annet Cloud</title>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .check-page {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .check-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 28px;
+    }
+
+    /* ── Loading state ── */
+    .check-loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      text-align: center;
+    }
+
+    .check-spinner {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 3px solid rgba(213, 96, 0, 0.15);
+      border-top-color: var(--accent);
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .check-loading-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .check-loading-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 280px;
+    }
+
+    /* ── Blocked state ── */
+    .check-blocked {
+      display: none;
+      width: 100%;
+      max-width: 760px;
+      animation: fadeUp 0.45s var(--ease-out-expo) both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .check-alert {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: rgba(213, 96, 0, 0.07);
+      border: 1px solid var(--accent-border);
+      border-radius: var(--radius-lg);
+      padding: 22px 24px;
+      margin-bottom: 32px;
+    }
+
+    .check-alert-icon {
+      flex-shrink: 0;
+      color: var(--accent);
+      margin-top: 2px;
+    }
+
+    .check-alert-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .check-alert-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .check-proxy-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    @media (max-width: 540px) {
+      .check-proxy-cards { grid-template-columns: 1fr; }
+    }
+
+    .check-proxy-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      overflow: hidden;
+    }
+
+    .check-proxy-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+      pointer-events: none;
+    }
+
+    .check-proxy-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .check-proxy-badge {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      border-radius: var(--radius-sm);
+      padding: 3px 8px;
+    }
+
+    .check-proxy-addr {
+      font-size: 12px;
+      color: var(--text-dim);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .check-steps {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 18px 22px;
+    }
+
+    .check-step-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .check-step-num {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .check-step-arrow {
+      color: var(--text-dim);
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 600px) {
+      .check-steps { flex-direction: column; align-items: flex-start; }
+      .check-step-arrow { transform: rotate(90deg); }
+    }
+
+    .check-back {
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .check-back a {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color var(--transition);
+    }
+
+    .check-back a:hover {
+      color: var(--text);
+    }
+  </style>
+</head>
+<body class="check-page">
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img src="assets/logo.png" alt="Annet Cloud">
+      </a>
+      <nav class="header-nav">
+        <a href="index.html#features">О сервисе</a>
+        <a href="index.html#how">Подключение</a>
+        <a href="index.html#proxy">Помощь с Telegram</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="check-main">
+
+    <!-- Loading state -->
+    <div class="check-loading" id="stateLoading" aria-live="polite">
+      <div class="check-spinner" aria-hidden="true"></div>
+      <div>
+        <div class="check-loading-title">Проверяем доступ к Telegram</div>
+        <p class="check-loading-sub">Это займёт несколько секунд…</p>
+      </div>
+    </div>
+
+    <!-- Blocked state -->
+    <div class="check-blocked" id="stateBlocked" aria-live="assertive">
+
+      <div class="check-alert">
+        <div class="check-alert-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div>
+          <div class="check-alert-title">Telegram недоступен в вашей сети</div>
+          <p class="check-alert-sub">Установите бесплатный MTProto-туннель от Annet Cloud — после этого откройте бота и активируйте доступ.</p>
+        </div>
+      </div>
+
+      <div class="check-proxy-cards">
+
+        <div class="check-proxy-card">
+          <div class="check-proxy-head">
+            <span class="check-proxy-badge">Соединение 1</span>
+            <span class="check-proxy-addr">158.160.62.185:9443</span>
+          </div>
+          <a href="tg://proxy?server=158.160.62.185&port=9443&secret=156c55e42c5e8cfccc443581554e3a96"
+             class="btn btn-accent btn-hud" onclick="ym(108239554,'reachGoal','get_proxy'); return true;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            Подключить
+          </a>
+        </div>
+
+        <div class="check-proxy-card">
+          <div class="check-proxy-head">
+            <span class="check-proxy-badge">Соединение 2</span>
+            <span class="check-proxy-addr">158.160.59.192:9443</span>
+          </div>
+          <a href="tg://proxy?server=158.160.59.192&port=9443&secret=156c55e42c5e8cfccc443581554e3a96"
+             class="btn btn-accent btn-hud" onclick="ym(108239554,'reachGoal','get_proxy'); return true;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            Подключить
+          </a>
+        </div>
+
+      </div>
+
+      <div class="check-steps">
+        <div class="check-step-item">
+          <span class="check-step-num">1</span>
+          <span>Нажмите «Подключить» — Telegram откроет диалог подключения</span>
+        </div>
+        <div class="check-step-arrow" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-step-item">
+          <span class="check-step-num">2</span>
+          <span>Примите и проверьте соединение</span>
+        </div>
+        <div class="check-step-arrow" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-step-item">
+          <span class="check-step-num">3</span>
+          <span>Откройте бота — <a id="botLinkAfterProxy" href="tg://resolve?domain=annetcloud_bot" class="link" onclick="ym(108239554,'reachGoal','bot_link'); return true;">@annetcloud_bot</a></span>
+        </div>
+        <a id="botOpenAfterProxy" href="tg://resolve?domain=annetcloud_bot" class="btn btn-primary btn-large btn-hud btn-hud-lg" onclick="ym(108239554,'reachGoal','bot_link'); return true;">Открыть бот</a>
+      </div>
+
+      <div class="check-back">
+        <a href="index.html">← Вернуться на главную</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="Annet Cloud" class="footer-logo">
+      </div>
+      <nav class="footer-nav">
+        <a href="index.html#proxy">MTProto туннель</a>
+        <a href="index.html#how">Как подключиться</a>
+        <a href="tg://resolve?domain=annetcloud_support">Поддержка</a>
+      </nav>
+    </div>
+    <div class="container footer-copy">
+      <p>© 2025 Annet Cloud. Сервис предназначен для обеспечения конфиденциальности и защиты трафика в сети.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var BOT_BASE = 'tg://resolve?domain=annetcloud_bot';
+
+      function buildPayload() {
+        var raw = new URLSearchParams(window.location.search).get('start_code');
+        if (!raw) return null;
+        raw = raw.trim();
+        if (!raw) return null;
+        var sanitized = raw.replace(/[^a-zA-Z0-9_-]/g, '');
+        if (!sanitized) return null;
+        var payload = 'code_' + sanitized;
+        return payload.length > 64 ? payload.slice(0, 64) : payload;
+      }
+
+      var payload = buildPayload();
+      var botHref = payload ? BOT_BASE + '&start=' + encodeURIComponent(payload) : BOT_BASE;
+
+      document.getElementById('botLinkAfterProxy').href = botHref;
+      document.getElementById('botOpenAfterProxy').href = botHref;
+
+      function showLoading() {
+        document.getElementById('stateLoading').style.display = 'flex';
+        document.getElementById('stateBlocked').style.display = 'none';
+      }
+
+      function showBlocked() {
+        document.getElementById('stateLoading').style.display = 'none';
+        document.getElementById('stateBlocked').style.display = 'block';
+      }
+
+      function redirectToBot() {
+        window.location.href = botHref;
+      }
+
+      function checkTelegram() {
+        var controller = new AbortController();
+        var timer = setTimeout(function () { controller.abort(); }, 5000);
+
+        fetch('https://telegram.org/favicon.ico', {
+          mode: 'no-cors',
+          cache: 'no-store',
+          signal: controller.signal
+        })
+          .then(function () {
+            clearTimeout(timer);
+            redirectToBot();
+          })
+          .catch(function () {
+            clearTimeout(timer);
+            showBlocked();
+          });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', checkTelegram);
+      } else {
+        checkTelegram();
+      }
+    })();
+  </script>
+
+</body>
+</html>
