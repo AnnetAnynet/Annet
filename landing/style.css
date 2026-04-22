@@ -1895,6 +1895,79 @@ html.reveal-pending .reveal.revealed {
 }
 
 /* ═══════════════════════════════════════════════
+   Cabinet alternative block (proxy section) + how-cta alt line
+═══════════════════════════════════════════════ */
+.cabinet-alt {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 22px 28px;
+  margin-bottom: 40px;
+  transition: border-color var(--dur-micro) ease, background var(--dur-micro) ease;
+}
+
+.cabinet-alt:hover {
+  border-color: var(--accent-border);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.cabinet-alt-icon {
+  flex-shrink: 0;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+}
+
+.cabinet-alt-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.cabinet-alt-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.cabinet-alt-title {
+  font-size: clamp(16px, 1.6vw, 18px);
+  font-weight: 700;
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+
+.cabinet-alt-sub {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.cabinet-alt-cta {
+  flex-shrink: 0;
+}
+
+.how-cta-alt {
+  margin: 18px auto 0;
+  max-width: 560px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* ═══════════════════════════════════════════════
    Responsive — Tablet (≤ 900px)
 ═══════════════════════════════════════════════ */
 @media (max-width: 900px) {
@@ -2040,6 +2113,22 @@ html.reveal-pending .reveal.revealed {
     flex-direction: column;
     gap: 14px;
     padding: 22px 20px;
+  }
+
+  .cabinet-alt {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+  }
+
+  .cabinet-alt-cta {
+    width: 100%;
+  }
+
+  .cabinet-alt-cta .btn {
+    width: 100%;
+    justify-content: center;
   }
 
   .proxy-card {
