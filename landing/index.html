@@ -40,8 +40,9 @@
       <nav class="header-nav">
         <a href="#features">О сервисе</a>
         <a href="#how">Подключение</a>
+        <a href="#miniapp">Приложение</a>
         <a href="#proxy">MTProto</a>
-        <a href="https://my.annet.online/login" class="js-cabinet-link" target="_blank" rel="noopener" onclick="ym(108239554,'reachGoal','cabinet_link'); return true;">Личный кабинет</a>
+        <a href="https://my.annet.online/login" class="js-cabinet-link" target="_blank" rel="noopener" onclick="ym(108239554,'reachGoal','web_link'); return true;">Личный кабинет</a>
       </nav>
       <a href="tg-check.html" class="btn btn-primary btn-hud" onclick="ym(108239554,'reachGoal','bot_link'); return true;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.28c-.146.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.984 13.64l-2.961-.924c-.644-.204-.657-.643.135-.953l11.571-4.461c.537-.194 1.006.131.833.946z"/></svg>
@@ -77,6 +78,10 @@
           </a>
 <!--           <a href="#proxy" class="btn btn-ghost">Не работает Telegram?</a>
  -->        </div>
+        <p class="telegram-help-hint">
+          Если Telegram не открывается в вашей сети -
+          <a href="tg-check.html" class="link" onclick="ym(108239554,'reachGoal','tg_help_open'); return true;">откройте экран помощи с подключением MTProto</a>.
+        </p>
         <div class="hero-platforms">
           <span>iOS</span>
           <span>Android</span>
@@ -272,8 +277,79 @@
       <div class="how-cta reveal">
         <a href="tg-check.html" class="btn btn-primary btn-large btn-hud btn-hud-lg" onclick="ym(108239554,'reachGoal','start_trial'); return true;">Начать бесплатно</a>
         <p class="how-cta-alt">
-          Или <a href="https://my.annet.online/login" class="link js-cabinet-link" target="_blank" rel="noopener" onclick="ym(108239554,'reachGoal','cabinet_link'); return true;">войдите в веб-кабинет</a> — триал и MTProto доступны без Telegram. Оплата подписки — через бот.
+          Или <a href="https://my.annet.online/login" class="link js-cabinet-link" target="_blank" rel="noopener" onclick="ym(108239554,'reachGoal','web_link'); return true;">войдите в веб-кабинет</a> - триал и MTProto доступны без Telegram. Оплата подписки - через бот.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       MINI APP
+  ═══════════════════════════════════════ -->
+  <section class="section miniapp-section" id="miniapp">
+    <div class="container">
+      <h2 class="section-title reveal">Приложение в Telegram</h2>
+      <div class="miniapp-layout">
+
+        <div class="miniapp-body">
+          <div class="miniapp-eyebrow reveal">Telegram Mini App</div>
+          <p class="miniapp-desc reveal">
+            Полноценное приложение прямо в Telegram.
+            Управляй подключением и открывай сервис с телефона в пару нажатий.
+          </p>
+          <div class="miniapp-feats-title reveal">Что еще можно делать в мини-приложении</div>
+
+          <div class="miniapp-feats">
+
+            <div class="miniapp-feat reveal">
+              <div class="miniapp-feat-title">Статус и управление</div>
+              <div class="miniapp-feat-sub">Активация, продление и текущий срок доступа</div>
+            </div>
+
+            <div class="miniapp-feat reveal">
+              <div class="miniapp-feat-title">Конфиги для клиентов</div>
+              <div class="miniapp-feat-sub">Готовые настройки для популярных клиентов</div>
+            </div>
+
+            <div class="miniapp-feat reveal">
+              <div class="miniapp-feat-title">MTProto-туннели</div>
+              <div class="miniapp-feat-sub">Подключение туннелей для бота в один шаг</div>
+            </div>
+
+            <div class="miniapp-feat reveal">
+              <div class="miniapp-feat-title">Отчёты о сбоях</div>
+              <div class="miniapp-feat-sub">Состояние сервиса в реальном времени</div>
+            </div>
+
+            <div class="miniapp-feat reveal">
+              <div class="miniapp-feat-title">На экран телефона</div>
+              <div class="miniapp-feat-sub">Работает как отдельное приложение</div>
+            </div>
+
+            <div class="miniapp-feat reveal">
+              <div class="miniapp-feat-title">Annet Runner</div>
+              <div class="miniapp-feat-sub">Игра раннер, когда хочется отвлечься от работы</div>
+            </div>
+
+          </div>
+
+          <div class="miniapp-actions reveal">
+            <a href="https://t.me/annetcloud_bot/app" class="btn btn-primary btn-hud btn-hud-lg js-miniapp-link" onclick="ym(108239554,'reachGoal','miniapp_open'); return true;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.28c-.146.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.984 13.64l-2.961-.924c-.644-.204-.657-.643.135-.953l11.571-4.461c.537-.194 1.006.131.833.946z"/></svg>
+              Открыть приложение
+            </a>
+            <a href="tg-check.html" class="btn btn-ghost" onclick="ym(108239554,'reachGoal','tg_help_open'); return true;">Если Telegram недоступен</a>
+          </div>
+        </div>
+
+        <div class="miniapp-visual reveal">
+          <i class="miniapp-corner-tl" aria-hidden="true"></i>
+          <i class="miniapp-corner-br" aria-hidden="true"></i>
+          <div class="miniapp-phone-frame">
+            <img src="assets/Mini-app.png" alt="Мини-приложение Annet Cloud" class="miniapp-screenshot">
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -309,7 +385,7 @@
           </p>
         </div>
         <div class="cabinet-alt-cta">
-          <a href="https://my.annet.online/login" class="btn btn-ghost js-cabinet-link" target="_blank" rel="noopener" onclick="ym(108239554,'reachGoal','cabinet_link'); return true;">
+          <a href="https://my.annet.online/login" class="btn btn-ghost js-cabinet-link" target="_blank" rel="noopener" onclick="ym(108239554,'reachGoal','web_link'); return true;">
             Открыть кабинет
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-left:6px"><path d="M7 17L17 7M9 7h8v8"/></svg>
           </a>
@@ -399,8 +475,9 @@
       </div>
       <nav class="footer-nav">
         <a href="tg-check.html" onclick="ym(108239554,'reachGoal','bot_link'); return true;">Бот</a>
-        <a href="https://my.annet.online/login" class="js-cabinet-link" target="_blank" rel="noopener" onclick="ym(108239554,'reachGoal','cabinet_link'); return true;">Личный кабинет</a>
+        <a href="https://my.annet.online/login" class="js-cabinet-link" target="_blank" rel="noopener" onclick="ym(108239554,'reachGoal','web_link'); return true;">Личный кабинет</a>
         <a href="tg://resolve?domain=annetcloud_support">Поддержка</a>
+        <a href="#miniapp">Приложение</a>
         <a href="#proxy">MTProto туннель</a>
         <a href="#how">Как подключиться</a>
       </nav>
@@ -414,6 +491,7 @@
     (function () {
       var CHECK_PAGE = 'tg-check.html';
       var CABINET_URL = 'https://my.annet.online/login';
+      var MINIAPP_URL = 'https://t.me/annetcloud_bot/app';
 
       function getStartCode() {
         var raw = new URLSearchParams(window.location.search).get('start_code');
@@ -435,6 +513,11 @@
         var cabinetHref = code ? CABINET_URL + '?ref=' + encodeURIComponent(code) : CABINET_URL;
         document.querySelectorAll('a.js-cabinet-link').forEach(function (a) {
           a.href = cabinetHref;
+        });
+
+        var miniappHref = code ? MINIAPP_URL + '?startapp=' + encodeURIComponent(code) : MINIAPP_URL;
+        document.querySelectorAll('a.js-miniapp-link').forEach(function (a) {
+          a.href = miniappHref;
         });
       }
 

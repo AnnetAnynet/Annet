@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0d0d0d;
+  --color-bg-alt: #111111;
+  --color-bg-card: #181818;
+  --color-bg-card-hover: #1e1e1e;
+  --color-accent: #D56000;
+  --color-accent-hover: #e87215;
+  --color-accent-dim: rgba(213, 96, 0, 0.12);
+  --color-accent-glow: rgba(213, 96, 0, 0.35);
+  --color-accent-border: rgba(213, 96, 0, 0.25);
+  --color-text: #ffffff;
+  --color-text-muted: #9a9a9a;
+  --color-text-dim: #555555;
+  --color-border: rgba(255, 255, 255, 0.07);
+  --color-border-card: rgba(255, 255, 255, 0.06);
+  --color-green: #2ecc71;
+  --color-red: #e74c3c;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* === Base === */
+* { -webkit-tap-highlight-color: transparent; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: contain;
+}
+
+/* === Scanline overlay on entire app === */
+#root::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(255, 255, 255, 0.008) 3px,
+    rgba(255, 255, 255, 0.008) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* === Scrollbar === */
+::-webkit-scrollbar { display: none; }
+html { scrollbar-width: none; }
+
+/* === HUD Button animation === */
+@keyframes hud-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* === Fox float === */
+@keyframes fox-float {
+  0%, 100% { transform: translateY(0) rotate(-0.5deg); }
+  50% { transform: translateY(-14px) rotate(0.5deg); }
+}
+
+/* Loading screen - «летающий» лис */
+@keyframes fox-fly {
+  0%, 100% { transform: translateY(0) translateX(0) rotate(-0.6deg); }
+  33% { transform: translateY(-20px) translateX(8px) rotate(0.4deg); }
+  66% { transform: translateY(-8px) translateX(-6px) rotate(-0.3deg); }
+}
+
+/* === Pulse dot === */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* === Slide up === */
+@keyframes slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* === Fade in === */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/*
+ * Biome change - compact top-of-screen chip (duration set inline from BIOME_TRANSITION_S).
+ * Deliberately minimal: no full-screen dim, no blur, no center-stage title, so the
+ * player keeps full visibility of obstacles during the biome transition.
+ */
+@keyframes biome-intro-chip {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  75% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+/* === Game start / tutorial panel === */
+@keyframes game-start-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes game-hud-shine {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.7; }
+}
+
+/* === Game over - stat rows / chips stagger === */
+@keyframes game-over-stat-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes game-over-score-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* === Spinner === */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* === Plan aura rotation === */
+@keyframes plan-aura {
+  to { transform: rotate(360deg); }
+}
+
+/* === Stories slide in === */
+@keyframes stories-in {
+  from { opacity: 0; transform: translateX(18px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* === Rival tracker (overtakes) === */
+@keyframes rival-swap-in {
+  from { opacity: 0; transform: translateY(-6px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes overtake-flash {
+  0%   { opacity: 0; }
+  18%  { opacity: 0.35; }
+  45%  { opacity: 0.18; }
+  100% { opacity: 0; }
+}
+
+@keyframes overtake-toast-in {
+  0%   { opacity: 0; transform: translateY(-10px) scale(0.92); }
+  15%  { opacity: 1; transform: translateY(0) scale(1); }
+  70%  { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-4px) scale(0.98); }
+}
+
+/* === Push screen (referral full list) === */
+@keyframes slide-right-in {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slide-right-out {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

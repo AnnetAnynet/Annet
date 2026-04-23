@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Открываем Telegram — Annet Cloud</title>
+  <title>Открываем Telegram - Annet Cloud</title>
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,18 +24,44 @@
       padding: 40px 28px;
     }
 
-    /* ── Loading state ── */
-    .check-loading {
+    .check-shell {
+      width: 100%;
+      max-width: 820px;
+      display: grid;
+      gap: 22px;
+    }
+
+    .check-trying,
+    .check-choice {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 26px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .check-trying::after,
+    .check-choice::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+      pointer-events: none;
+    }
+
+    .check-trying {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 24px;
+      gap: 18px;
       text-align: center;
     }
 
     .check-spinner {
-      width: 56px;
-      height: 56px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       border: 3px solid rgba(213, 96, 0, 0.15);
       border-top-color: var(--accent);
@@ -46,28 +72,33 @@
       to { transform: rotate(360deg); }
     }
 
-    .check-loading-title {
+    .check-trying-title {
       font-size: 20px;
       font-weight: 700;
       letter-spacing: -0.02em;
     }
 
-    .check-loading-sub {
+    .check-trying-sub {
       font-size: 14px;
       color: var(--text-muted);
-      max-width: 280px;
+      line-height: 1.6;
+      max-width: 500px;
     }
 
-    /* ── Blocked state ── */
-    .check-blocked {
+    .check-trying-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .check-choice {
       display: none;
-      width: 100%;
-      max-width: 760px;
-      animation: fadeUp 0.45s var(--ease-out-expo) both;
+      animation: fadeUp 0.35s var(--ease-out-expo) both;
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
@@ -78,8 +109,8 @@
       background: rgba(213, 96, 0, 0.07);
       border: 1px solid var(--accent-border);
       border-radius: var(--radius-lg);
-      padding: 22px 24px;
-      margin-bottom: 32px;
+      padding: 18px 20px;
+      margin-bottom: 18px;
     }
 
     .check-alert-icon {
@@ -101,46 +132,60 @@
       line-height: 1.6;
     }
 
-    .check-proxy-cards {
+    .check-entry-cards {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 28px;
+      gap: 14px;
+      margin-bottom: 20px;
     }
 
-    @media (max-width: 540px) {
-      .check-proxy-cards { grid-template-columns: 1fr; }
-    }
-
-    .check-proxy-card {
-      position: relative;
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      border-radius: var(--radius-lg);
-      padding: 20px;
+    .check-entry-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      overflow: hidden;
+      gap: 10px;
     }
 
-    .check-proxy-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
-      pointer-events: none;
+    .check-entry-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
     }
 
-    .check-proxy-head {
+    .check-entry-sub {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+
+    .check-server-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .check-server-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .check-server-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 8px;
     }
 
-    .check-proxy-badge {
+    .check-server-badge {
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.06em;
@@ -152,7 +197,7 @@
       padding: 3px 8px;
     }
 
-    .check-proxy-addr {
+    .check-server-addr {
       font-size: 12px;
       color: var(--text-dim);
       font-variant-numeric: tabular-nums;
@@ -166,7 +211,8 @@
       background: var(--bg-alt);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 18px 22px;
+      padding: 16px 18px;
+      margin-bottom: 18px;
     }
 
     .check-step-item {
@@ -197,14 +243,15 @@
       flex-shrink: 0;
     }
 
-    @media (max-width: 600px) {
-      .check-steps { flex-direction: column; align-items: flex-start; }
-      .check-step-arrow { transform: rotate(90deg); }
+    .check-post-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
     .check-back {
       text-align: center;
-      margin-top: 24px;
+      margin-top: 6px;
     }
 
     .check-back a {
@@ -217,6 +264,39 @@
 
     .check-back a:hover {
       color: var(--text);
+    }
+
+    @media (max-width: 700px) {
+      .check-entry-cards,
+      .check-server-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .check-main {
+        padding: 30px 18px;
+      }
+
+      .check-trying,
+      .check-choice {
+        padding: 20px 16px;
+      }
+
+      .check-steps {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .check-step-arrow {
+        transform: rotate(90deg);
+      }
+
+      .check-post-actions .btn,
+      .check-trying-actions .btn {
+        width: 100%;
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -236,84 +316,92 @@
   </header>
 
   <main class="check-main">
-
-    <!-- Loading state -->
-    <div class="check-loading" id="stateLoading" aria-live="polite">
-      <div class="check-spinner" aria-hidden="true"></div>
-      <div>
-        <div class="check-loading-title">Проверяем доступ к Telegram</div>
-        <p class="check-loading-sub">Это займёт несколько секунд…</p>
-      </div>
-    </div>
-
-    <!-- Blocked state -->
-    <div class="check-blocked" id="stateBlocked" aria-live="assertive">
-
-      <div class="check-alert">
-        <div class="check-alert-icon" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        </div>
-        <div>
-          <div class="check-alert-title">Telegram недоступен в вашей сети</div>
-          <p class="check-alert-sub">Установите бесплатный MTProto-туннель от Annet Cloud — после этого откройте бота и активируйте доступ.</p>
+    <section class="check-shell">
+      <div class="check-trying" id="stateTrying" aria-live="polite">
+        <div class="check-spinner" aria-hidden="true"></div>
+        <div class="check-trying-title">Пробуем открыть Telegram</div>
+        <p class="check-trying-sub">
+          Если переход не сработал, ниже откроется экран входа с вариантами:
+          бот, mini app и подключение MTProto.
+        </p>
+        <div class="check-trying-actions">
+          <a id="openBotNow" href="https://t.me/annetcloud_bot" class="btn btn-primary btn-hud" onclick="ym(108239554,'reachGoal','bot_link'); return true;">Открыть бота</a>
+          <button type="button" id="openChoiceNow" class="btn btn-ghost">Показать варианты входа</button>
         </div>
       </div>
 
-      <div class="check-proxy-cards">
-
-        <div class="check-proxy-card">
-          <div class="check-proxy-head">
-            <span class="check-proxy-badge">Соединение 1</span>
-            <span class="check-proxy-addr">158.160.62.185:9443</span>
+      <div class="check-choice" id="stateChoice" aria-live="polite">
+        <div class="check-alert">
+          <div class="check-alert-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
           </div>
-          <a href="tg://proxy?server=158.160.62.185&port=9443&secret=156c55e42c5e8cfccc443581554e3a96"
-             class="btn btn-accent btn-hud" onclick="ym(108239554,'reachGoal','get_proxy'); return true;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-            Подключить
-          </a>
-        </div>
-
-        <div class="check-proxy-card">
-          <div class="check-proxy-head">
-            <span class="check-proxy-badge">Соединение 2</span>
-            <span class="check-proxy-addr">158.160.59.192:9443</span>
+          <div>
+            <div class="check-alert-title">Если Telegram не открывается в сети</div>
+            <p class="check-alert-sub">Подключите MTProto, затем вернитесь к боту или mini app.</p>
           </div>
-          <a href="tg://proxy?server=158.160.59.192&port=9443&secret=156c55e42c5e8cfccc443581554e3a96"
-             class="btn btn-accent btn-hud" onclick="ym(108239554,'reachGoal','get_proxy'); return true;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-            Подключить
-          </a>
         </div>
 
+        <div class="check-entry-cards">
+          <div class="check-entry-card">
+            <div class="check-entry-title">Открыть бота</div>
+            <p class="check-entry-sub">Запуск бота с привязкой вашего start_code.</p>
+            <a id="botOpenChoice" href="https://t.me/annetcloud_bot" class="btn btn-primary btn-hud" onclick="ym(108239554,'reachGoal','bot_link'); return true;">Перейти в бот</a>
+          </div>
+          <div class="check-entry-card">
+            <div class="check-entry-title">Открыть mini app</div>
+            <p class="check-entry-sub">Вход в приложение Telegram с тем же start_code.</p>
+            <a id="miniAppOpenChoice" href="https://t.me/annetcloud_bot/app" class="btn btn-ghost" onclick="ym(108239554,'reachGoal','miniapp_open'); return true;">Перейти в mini app</a>
+          </div>
+        </div>
+
+        <div class="check-server-cards">
+          <div class="check-server-card">
+            <div class="check-server-head">
+              <span class="check-server-badge">Сервер 1</span>
+              <span class="check-server-addr">158.160.62.185:9443</span>
+            </div>
+            <a href="tg://proxy?server=158.160.62.185&port=9443&secret=156c55e42c5e8cfccc443581554e3a96" class="btn btn-accent btn-hud" onclick="ym(108239554,'reachGoal','get_proxy'); return true;">Подключить MTProto</a>
+          </div>
+          <div class="check-server-card">
+            <div class="check-server-head">
+              <span class="check-server-badge">Сервер 2</span>
+              <span class="check-server-addr">158.160.59.192:9443</span>
+            </div>
+            <a href="tg://proxy?server=158.160.59.192&port=9443&secret=156c55e42c5e8cfccc443581554e3a96" class="btn btn-accent btn-hud" onclick="ym(108239554,'reachGoal','get_proxy'); return true;">Подключить MTProto</a>
+          </div>
+        </div>
+
+        <div class="check-steps">
+          <div class="check-step-item">
+            <span class="check-step-num">1</span>
+            <span>Нажмите «Подключить MTProto»</span>
+          </div>
+          <div class="check-step-arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="check-step-item">
+            <span class="check-step-num">2</span>
+            <span>Примите и проверьте соединение в Telegram</span>
+          </div>
+          <div class="check-step-arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="check-step-item">
+            <span class="check-step-num">3</span>
+            <span>Откройте бота или mini app</span>
+          </div>
+        </div>
+
+        <div class="check-post-actions">
+          <a id="botOpenAfterServer" href="https://t.me/annetcloud_bot" class="btn btn-primary btn-hud btn-hud-lg" onclick="ym(108239554,'reachGoal','bot_link'); return true;">Открыть бота</a>
+          <a id="miniAppOpenAfterServer" href="https://t.me/annetcloud_bot/app" class="btn btn-ghost btn-large" onclick="ym(108239554,'reachGoal','miniapp_open'); return true;">Открыть mini app</a>
+        </div>
+
+        <div class="check-back">
+          <a href="index.html" id="backToLanding">Вернуться на главную</a>
+        </div>
       </div>
-
-      <div class="check-steps">
-        <div class="check-step-item">
-          <span class="check-step-num">1</span>
-          <span>Нажмите «Подключить» — Telegram откроет диалог подключения</span>
-        </div>
-        <div class="check-step-arrow" aria-hidden="true">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="check-step-item">
-          <span class="check-step-num">2</span>
-          <span>Примите и проверьте соединение</span>
-        </div>
-        <div class="check-step-arrow" aria-hidden="true">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="check-step-item">
-          <span class="check-step-num">3</span>
-          <span>Откройте бота — <a id="botLinkAfterProxy" href="tg://resolve?domain=annetcloud_bot" class="link" onclick="ym(108239554,'reachGoal','bot_link'); return true;">@annetcloud_bot</a></span>
-        </div>
-        <a id="botOpenAfterProxy" href="tg://resolve?domain=annetcloud_bot" class="btn btn-primary btn-large btn-hud btn-hud-lg" onclick="ym(108239554,'reachGoal','bot_link'); return true;">Открыть бот</a>
-      </div>
-
-      <div class="check-back">
-        <a href="index.html">← Вернуться на главную</a>
-      </div>
-
-    </div>
+    </section>
   </main>
 
   <footer class="footer">
@@ -334,62 +422,89 @@
 
   <script>
     (function () {
-      var BOT_BASE = 'tg://resolve?domain=annetcloud_bot';
+      var BOT_BASE = 'https://t.me/annetcloud_bot';
+      var MINIAPP_BASE = 'https://t.me/annetcloud_bot/app';
+      var CHECK_PAGE = 'tg-check.html';
+      var AUTO_CHOICE_DELAY_MS = 1700;
+      var choiceShown = false;
 
-      function buildPayload() {
+      function getStartCode() {
         var raw = new URLSearchParams(window.location.search).get('start_code');
         if (!raw) return null;
         raw = raw.trim();
         if (!raw) return null;
         var sanitized = raw.replace(/[^a-zA-Z0-9_-]/g, '');
-        if (!sanitized) return null;
-        var payload = 'code_' + sanitized;
+        return sanitized || null;
+      }
+
+      function buildBotPayload(code) {
+        if (!code) return null;
+        var payload = 'code_' + code;
         return payload.length > 64 ? payload.slice(0, 64) : payload;
       }
 
-      var payload = buildPayload();
-      var botHref = payload ? BOT_BASE + '&start=' + encodeURIComponent(payload) : BOT_BASE;
-
-      document.getElementById('botLinkAfterProxy').href = botHref;
-      document.getElementById('botOpenAfterProxy').href = botHref;
-
-      function showLoading() {
-        document.getElementById('stateLoading').style.display = 'flex';
-        document.getElementById('stateBlocked').style.display = 'none';
+      function showChoice() {
+        if (choiceShown) return;
+        choiceShown = true;
+        document.getElementById('stateChoice').style.display = 'block';
       }
 
-      function showBlocked() {
-        document.getElementById('stateLoading').style.display = 'none';
-        document.getElementById('stateBlocked').style.display = 'block';
+      function applyLinks() {
+        var code = getStartCode();
+        var payload = buildBotPayload(code);
+        var botHref = payload ? BOT_BASE + '?start=' + encodeURIComponent(payload) : BOT_BASE;
+        var miniappHref = code ? MINIAPP_BASE + '?startapp=' + encodeURIComponent(code) : MINIAPP_BASE;
+        var backHref = code ? 'index.html?start_code=' + encodeURIComponent(code) : 'index.html';
+        var retryHref = code ? CHECK_PAGE + '?start_code=' + encodeURIComponent(code) : CHECK_PAGE;
+
+        [
+          'openBotNow',
+          'botOpenChoice',
+          'botOpenAfterServer'
+        ].forEach(function (id) {
+          var node = document.getElementById(id);
+          if (node) node.href = botHref;
+        });
+
+        [
+          'miniAppOpenChoice',
+          'miniAppOpenAfterServer'
+        ].forEach(function (id) {
+          var node = document.getElementById(id);
+          if (node) node.href = miniappHref;
+        });
+
+        var backNode = document.getElementById('backToLanding');
+        if (backNode) backNode.href = backHref;
+
+        document.getElementById('openChoiceNow').addEventListener('click', function () {
+          showChoice();
+          window.history.replaceState({}, '', retryHref + '#options');
+        });
+
+        return botHref;
       }
 
-      function redirectToBot() {
-        window.location.href = botHref;
-      }
-
-      function checkTelegram() {
+      function runTelegramCheck() {
         var controller = new AbortController();
-        var timer = setTimeout(function () { controller.abort(); }, 5000);
+        var timer = setTimeout(function () { controller.abort(); }, AUTO_CHOICE_DELAY_MS);
 
         fetch('https://telegram.org/favicon.ico', {
           mode: 'no-cors',
           cache: 'no-store',
           signal: controller.signal
         })
-          .then(function () {
+          .finally(function () {
             clearTimeout(timer);
-            redirectToBot();
-          })
-          .catch(function () {
-            clearTimeout(timer);
-            showBlocked();
+            showChoice();
           });
       }
 
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', checkTelegram);
+      applyLinks();
+      if (window.location.hash === '#options') {
+        showChoice();
       } else {
-        checkTelegram();
+        runTelegramCheck();
       }
     })();
   </script>
