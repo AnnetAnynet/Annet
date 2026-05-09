@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Политика конфиденциальности — Annet Cloud</title>
+  <meta name="description" content="Политика конфиденциальности сервиса Annet Cloud: какие данные мы собираем, как используем и защищаем вашу информацию.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ─── Privacy page layout ─── */
+    .pp-hero {
+      padding: 80px 0 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .pp-hero-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 32px;
+      transition: color var(--transition);
+    }
+    .pp-hero-back:hover { color: var(--accent); }
+    .pp-hero-back svg { flex-shrink: 0; }
+    .pp-hero-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      border-radius: 4px;
+      padding: 3px 10px;
+      margin-bottom: 16px;
+    }
+    .pp-hero-title {
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .pp-hero-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ─── Content body ─── */
+    .pp-body {
+      padding: 60px 0 100px;
+    }
+    .pp-layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .pp-layout { grid-template-columns: 1fr; gap: 40px; }
+      .pp-toc { display: none; }
+    }
+
+    /* ─── Table of contents ─── */
+    .pp-toc {
+      position: sticky;
+      top: 80px;
+    }
+    .pp-toc-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 14px;
+    }
+    .pp-toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .pp-toc-list a {
+      display: block;
+      font-size: 13px;
+      color: var(--text-muted);
+      padding: 5px 10px;
+      border-left: 2px solid transparent;
+      border-radius: 0 4px 4px 0;
+      transition: all var(--transition);
+      line-height: 1.4;
+    }
+    .pp-toc-list a:hover {
+      color: var(--text);
+      border-left-color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    /* ─── Sections ─── */
+    .pp-section {
+      padding-bottom: 52px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 52px;
+    }
+    .pp-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .pp-section-num {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .pp-section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 18px;
+      letter-spacing: -0.01em;
+    }
+    .pp-text {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+    .pp-text:last-child { margin-bottom: 0; }
+    .pp-text strong { color: var(--text); font-weight: 600; }
+    .pp-text a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-color: var(--accent-border);
+      text-underline-offset: 3px;
+    }
+    .pp-text a:hover { text-decoration-color: var(--accent); }
+
+    .pp-subtitle {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      margin: 24px 0 10px;
+    }
+    .pp-subtitle:first-child { margin-top: 0; }
+
+    .pp-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .pp-list li {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      padding-left: 20px;
+      position: relative;
+    }
+    .pp-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    .pp-list li strong { color: var(--text); font-weight: 600; }
+
+    .pp-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-sm);
+      padding: 20px 24px;
+      margin: 20px 0;
+    }
+    .pp-card-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+    }
+    .pp-retention-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .pp-retention-item {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .pp-retention-period {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .pp-retention-what {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .pp-contact-block {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .pp-contact-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .pp-contact-item svg { flex-shrink: 0; color: var(--accent); }
+    .pp-contact-item a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .pp-contact-item a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       HEADER
+  ═══════════════════════════════════════ -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="/" class="logo">
+        <img src="assets/logo.png" alt="Annet Cloud">
+      </a>
+      <nav class="header-nav">
+        <a href="/#features">О сервисе</a>
+        <a href="/#how">Подключение</a>
+        <a href="/#proxy">Помощь с Telegram</a>
+        <a href="https://corp.annet.cloud/">Для бизнеса</a>
+      </nav>
+      <a href="tg://resolve?domain=annetcloud_bot" class="btn btn-primary btn-hud">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.28c-.146.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.984 13.64l-2.961-.924c-.644-.204-.657-.643.135-.953l11.571-4.461c.537-.194 1.006.131.833.946z"/></svg>
+        Открыть бот
+      </a>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════ -->
+  <section class="pp-hero">
+    <div class="container">
+      <a href="/" class="pp-hero-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M10 4L6 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        На главную
+      </a>
+      <div class="pp-hero-tag">Правовые документы</div>
+      <h1 class="pp-hero-title">Политика конфиденциальности</h1>
+      <p class="pp-hero-meta">Последнее обновление: 10 мая 2025 г.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       CONTENT
+  ═══════════════════════════════════════ -->
+  <div class="pp-body">
+    <div class="container">
+      <div class="pp-layout">
+
+        <!-- Table of contents -->
+        <nav class="pp-toc" aria-label="Содержание">
+          <div class="pp-toc-title">Содержание</div>
+          <ol class="pp-toc-list">
+            <li><a href="#intro">1. Введение</a></li>
+            <li><a href="#data-collected">2. Какие данные мы собираем</a></li>
+            <li><a href="#data-use">3. Как мы используем данные</a></li>
+            <li><a href="#data-sharing">4. Передача данных третьим лицам</a></li>
+            <li><a href="#retention">5. Сроки хранения</a></li>
+            <li><a href="#rights">6. Ваши права</a></li>
+            <li><a href="#security">7. Безопасность данных</a></li>
+            <li><a href="#analytics">8. Аналитика и метрика</a></li>
+            <li><a href="#minors">9. Несовершеннолетние</a></li>
+            <li><a href="#changes">10. Изменения политики</a></li>
+            <li><a href="#contacts">11. Контакты</a></li>
+          </ol>
+        </nav>
+
+        <!-- Main content -->
+        <main>
+
+          <!-- 1. Введение -->
+          <section class="pp-section" id="intro">
+            <div class="pp-section-num">01</div>
+            <h2 class="pp-section-title">Введение</h2>
+            <p class="pp-text">
+              Настоящая Политика конфиденциальности описывает, какие персональные данные собирает,
+              использует и защищает сервис <strong>Annet Cloud</strong> при предоставлении услуг
+              защиты трафика и шифрования соединения (далее - «Сервис»).
+            </p>
+            <p class="pp-text">
+              Annet Cloud - небольшой персональный сервис шифрования трафика, работающий через
+              интерфейс Telegram-бота. Доступ к Сервису предоставляется физическим лицом -
+              <strong>[ИП Плужнов Егор Николаевич, ОГРНИП 321508100511390, ИНН 501718691134]</strong>
+              (далее - «мы», «нас»).
+            </p>
+            <p class="pp-text">
+              Используя Сервис, вы соглашаетесь с условиями настоящей Политики. Если вы не согласны
+              с порядком обработки данных, описанным ниже, просим прекратить использование Сервиса
+              и обратиться в поддержку для удаления вашей учётной записи.
+            </p>
+          </section>
+
+          <!-- 2. Данные -->
+          <section class="pp-section" id="data-collected">
+            <div class="pp-section-num">02</div>
+            <h2 class="pp-section-title">Какие данные мы собираем</h2>
+            <p class="pp-text">
+              Мы собираем только минимально необходимый объём данных для предоставления Сервиса.
+            </p>
+
+            <div class="pp-subtitle">Данные учётной записи</div>
+            <ul class="pp-list">
+              <li><strong>Telegram ID</strong> - числовой идентификатор вашего аккаунта в Telegram. Служит первичным ключом учётной записи в Сервисе.</li>
+              <li><strong>Telegram username</strong> - публичное имя пользователя (@username), если оно установлено. Используется для связи в случае технических вопросов.</li>
+              <li><strong>Имя в Telegram</strong> - имя, отображаемое в профиле, если оно передаётся при обращении к боту.</li>
+            </ul>
+
+            <div class="pp-subtitle">Платёжные данные</div>
+            <ul class="pp-list">
+              <li>Дата, сумма и валюта транзакции.</li>
+              <li>Идентификатор платежа от платёжного партнёра.</li>
+              <li>Выбранный тарифный план и период подписки.</li>
+            </ul>
+            <p class="pp-text">
+              Мы <strong>не храним</strong> полные реквизиты банковских карт, данные криптовалютных кошельков
+              и прочие платёжные реквизиты - они обрабатываются исключительно платёжными партнёрами.
+            </p>
+
+            <div class="pp-subtitle">Данные о подписке и конфигурации</div>
+            <ul class="pp-list">
+              <li>Дата начала и окончания подписки, тарифный план.</li>
+              <li>Статус доступа (активен / истёк / тестовый период).</li>
+              <li>Технические идентификаторы конфигурации (username в инфраструктуре), необходимые для управления доступом.</li>
+            </ul>
+
+            <div class="pp-subtitle">Данные о трафике</div>
+            <ul class="pp-list">
+              <li>Объём переданного и принятого трафика в рамках подписки - используется для мониторинга инфраструктурной нагрузки.</li>
+              <li>Мы <strong>не ведём логов посещённых сайтов</strong>, запросов DNS и содержимого трафика.</li>
+            </ul>
+
+            <div class="pp-subtitle">Технические и диагностические данные</div>
+            <ul class="pp-list">
+              <li>Выбранная серверная локация и тип конфигурации.</li>
+              <li>Сведения об ошибках, переданные при обращении в поддержку (тип устройства, ОС - только если пользователь сам сообщает эту информацию).</li>
+            </ul>
+          </section>
+
+          <!-- 3. Использование -->
+          <section class="pp-section" id="data-use">
+            <div class="pp-section-num">03</div>
+            <h2 class="pp-section-title">Как мы используем данные</h2>
+            <ul class="pp-list">
+              <li>Создание и ведение учётной записи, управление доступом к Сервису.</li>
+              <li>Обработка платежей и выставление конфигурации после оплаты.</li>
+              <li>Отправка уведомлений о состоянии подписки: напоминание об окончании, подтверждение продления.</li>
+              <li>Техническая поддержка: ответы на запросы, диагностика проблем с подключением.</li>
+              <li>Мониторинг стабильности инфраструктуры и управление нагрузкой.</li>
+              <li>Выполнение требований законодательства Российской Федерации.</li>
+            </ul>
+          </section>
+
+          <!-- 4. Передача данных -->
+          <section class="pp-section" id="data-sharing">
+            <div class="pp-section-num">04</div>
+            <h2 class="pp-section-title">Передача данных третьим лицам</h2>
+            <p class="pp-text">
+              Мы <strong>не продаём и не передаём</strong> ваши данные третьим лицам в маркетинговых
+              или коммерческих целях. Передача возможна только в следующих случаях:
+            </p>
+            <ul class="pp-list">
+              <li>
+                <strong>Платёжные партнёры</strong> - для обработки транзакций. Партнёры получают
+                только те данные, которые необходимы для совершения и верификации платежа.
+              </li>
+              <li>
+                <strong>Инфраструктурные провайдеры</strong> - облачные серверы и хостинг, на которых
+                работает Сервис. Передача ограничена техническими данными, необходимыми для
+                предоставления услуги.
+              </li>
+              <li>
+                <strong>Аналитические сервисы</strong> - Яндекс.Метрика собирает обезличенные данные
+                о посещениях сайта annet.cloud (подробнее - в разделе 8).
+              </li>
+              <li>
+                <strong>Государственные органы</strong> - только при наличии законного требования
+                в соответствии с законодательством Российской Федерации. Мы предоставляем
+                исключительно тот объём данных, который прямо предписан требованием.
+              </li>
+            </ul>
+          </section>
+
+          <!-- 5. Хранение -->
+          <section class="pp-section" id="retention">
+            <div class="pp-section-num">05</div>
+            <h2 class="pp-section-title">Сроки хранения данных</h2>
+            <p class="pp-text">
+              Данные хранятся ровно столько, сколько необходимо для цели их сбора.
+              После истечения срока данные удаляются или обезличиваются.
+            </p>
+            <div class="pp-retention-grid" style="margin-top:20px">
+              <div class="pp-retention-item">
+                <div class="pp-retention-period">10 лет</div>
+                <div class="pp-retention-what">Платёжные данные - для налогового и бухгалтерского учёта</div>
+              </div>
+              <div class="pp-retention-item">
+                <div class="pp-retention-period">3 года</div>
+                <div class="pp-retention-what">Данные обращений в поддержку после решения вопроса</div>
+              </div>
+              <div class="pp-retention-item">
+                <div class="pp-retention-period">30 дней</div>
+                <div class="pp-retention-what">Данные трафика (объёмы) после окончания расчётного периода</div>
+              </div>
+              <div class="pp-retention-item">
+                <div class="pp-retention-period">По запросу</div>
+                <div class="pp-retention-what">Учётная запись - удаляется немедленно по запросу пользователя</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 6. Права -->
+          <section class="pp-section" id="rights">
+            <div class="pp-section-num">06</div>
+            <h2 class="pp-section-title">Ваши права</h2>
+            <p class="pp-text">
+              В соответствии с законодательством Российской Федерации о персональных данных
+              (Федеральный закон № 152-ФЗ «О персональных данных») вы вправе:
+            </p>
+            <ul class="pp-list">
+              <li><strong>Получить информацию</strong> о том, какие данные мы храним и как их используем.</li>
+              <li><strong>Исправить</strong> неточные или устаревшие данные.</li>
+              <li><strong>Потребовать удаления</strong> данных учётной записи (кроме данных, которые мы обязаны хранить по закону).</li>
+              <li><strong>Отозвать согласие</strong> на получение информационных уведомлений от Сервиса.</li>
+              <li><strong>Получить данные</strong> в машиночитаемом формате.</li>
+            </ul>
+            <p class="pp-text">
+              Для реализации любого из перечисленных прав обратитесь в поддержку через
+              Telegram: <a href="tg://resolve?domain=annetcloud_support">@annetcloud_support</a>.
+              Мы рассматриваем подтверждённые запросы в течение <strong>30 дней</strong>.
+            </p>
+          </section>
+
+          <!-- 7. Безопасность -->
+          <section class="pp-section" id="security">
+            <div class="pp-section-num">07</div>
+            <h2 class="pp-section-title">Безопасность данных</h2>
+            <p class="pp-text">
+              Мы применяем технические и организационные меры для защиты ваших данных:
+            </p>
+            <ul class="pp-list">
+              <li>Шифрование данных при передаче (TLS/HTTPS для всех веб-запросов).</li>
+              <li>Доступ к базе данных ограничен: только технические сотрудники, непосредственно занятые обслуживанием Сервиса.</li>
+              <li>Инфраструктура размещена у проверенных облачных провайдеров с физической защитой серверных помещений.</li>
+              <li>Регулярное резервное копирование с ограниченным сроком хранения резервных копий.</li>
+            </ul>
+            <p class="pp-text">
+              В случае выявления инцидента, затрагивающего ваши данные, мы уведомим
+              вас через Telegram-бот в разумные сроки.
+            </p>
+          </section>
+
+          <!-- 8. Аналитика -->
+          <section class="pp-section" id="analytics">
+            <div class="pp-section-num">08</div>
+            <h2 class="pp-section-title">Аналитика и метрика</h2>
+            <p class="pp-text">
+              На сайте <strong>annet.cloud</strong> используется Яндекс.Метрика - сервис
+              веб-аналитики ООО «ЯНДЕКС». Яндекс.Метрика собирает следующие данные о посетителях:
+            </p>
+            <ul class="pp-list">
+              <li>Тип браузера и операционная система.</li>
+              <li>Источник перехода (откуда пришёл пользователь).</li>
+              <li>Страницы, которые просматривал пользователь, и время посещения.</li>
+              <li>Данные о кликах и взаимодействии со страницей (карта кликов, вебвизор).</li>
+            </ul>
+            <p class="pp-text">
+              Эти данные собираются в обезличенной форме и используются исключительно для анализа
+              эффективности сайта. Обработка данных Яндекс.Метрикой регулируется
+              <a href="https://yandex.ru/legal/confidential/" target="_blank" rel="noopener">
+                Политикой конфиденциальности Яндекса</a>.
+            </p>
+            <p class="pp-text">
+              Если вы не хотите, чтобы данные о вашем посещении передавались в Яндекс.Метрику,
+              вы можете установить
+              <a href="https://yandex.ru/support/metrika/general/opt-out.html" target="_blank" rel="noopener">
+                браузерный плагин отключения</a> или использовать режим «Не отслеживать» в браузере.
+            </p>
+          </section>
+
+          <!-- 9. Несовершеннолетние -->
+          <section class="pp-section" id="minors">
+            <div class="pp-section-num">09</div>
+            <h2 class="pp-section-title">Несовершеннолетние</h2>
+            <p class="pp-text">
+              Сервис предназначен для лиц старше 18 лет. Мы не собираем намеренно данные
+              несовершеннолетних. Если нам станет известно, что учётная запись принадлежит
+              лицу младше 18 лет, такая учётная запись и все связанные с ней данные
+              будут незамедлительно удалены.
+            </p>
+          </section>
+
+          <!-- 10. Изменения -->
+          <section class="pp-section" id="changes">
+            <div class="pp-section-num">10</div>
+            <h2 class="pp-section-title">Изменения политики</h2>
+            <p class="pp-text">
+              Мы можем периодически обновлять настоящую Политику конфиденциальности в связи
+              с изменениями в работе Сервиса или требованиях законодательства.
+            </p>
+            <p class="pp-text">
+              О существенных изменениях мы сообщим через Telegram-бот
+              или официальный канал Annet Cloud не менее чем за <strong>7 дней</strong>
+              до их вступления в силу.
+            </p>
+            <p class="pp-text">
+              Продолжение использования Сервиса после вступления изменений в силу
+              означает ваше согласие с обновлённой редакцией Политики.
+            </p>
+          </section>
+
+          <!-- 11. Контакты -->
+          <section class="pp-section" id="contacts">
+            <div class="pp-section-num">11</div>
+            <h2 class="pp-section-title">Контакты</h2>
+            <p class="pp-text">
+              По вопросам, связанным с обработкой персональных данных, обращайтесь:
+            </p>
+            <div class="pp-contact-block">
+              <div class="pp-contact-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.28c-.146.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.984 13.64l-2.961-.924c-.644-.204-.657-.643.135-.953l11.571-4.461c.537-.194 1.006.131.833.946z"/>
+                </svg>
+                Поддержка в Telegram:
+                <a href="tg://resolve?domain=annetcloud_support">@annetcloud_support</a>
+              </div>
+              <div class="pp-contact-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                </svg>
+                Электронная почта:
+                <a href="mailto:support@annet.cloud">support@annet.cloud</a>
+              </div>
+            </div>
+            <div class="pp-card" style="margin-top:24px">
+              <div class="pp-card-title">Юридическое лицо</div>
+              <p class="pp-text" style="margin:0; font-size:14px;">
+                [ИП Плужнов Егор Николаевич]<br>
+                ОГРНИП: [321508100511390]<br>
+                ИНН: [501718691134]<br>
+                Российская Федерация
+              </p>
+            </div>
+          </section>
+
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="Annet Cloud" class="footer-logo">
+      </div>
+      <nav class="footer-nav">
+        <a href="tg://resolve?domain=annetcloud_bot">Бот</a>
+        <a href="tg://resolve?domain=annetcloud_support">Поддержка</a>
+        <a href="/#proxy">MTProto туннель</a>
+        <a href="/#how">Как подключиться</a>
+        <a href="https://corp.annet.cloud/">Для бизнеса</a>
+      </nav>
+    </div>
+    <div class="container footer-copy">
+      <p>© 2025 Annet Cloud. Сервис предназначен для обеспечения конфиденциальности и защиты трафика в сети.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
