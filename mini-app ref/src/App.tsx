@@ -337,8 +337,9 @@ export default function App() {
     haptic('medium')
 
     try {
-      const startCodeParam = raw.startsWith('code_') ? raw : `code_${raw}`
-      const result = await activateCode(startCodeParam, user.username)
+      const startParam =
+        raw.startsWith('code_') || raw.startsWith('promo_') ? raw : `code_${raw}`
+      const result = await activateCode(startParam, user.username)
       return Boolean(result)
     } catch (err) {
       setAccessCodeError(

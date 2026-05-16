@@ -496,40 +496,61 @@
       var CABINET_URL = 'https://my.annet.online/login';
       var MINIAPP_URL = 'https://t.me/annetcloud_bot/app';
 
-      function getStartCode() {
-        var raw = new URLSearchParams(window.location.search).get('start_code');
+      function sanitizeStartParam(raw) {
         if (!raw) return null;
         raw = raw.trim();
         if (!raw) return null;
-        var sanitized = raw.replace(/[^a-zA-Z0-9_-]/g, '');
-        return sanitized || null;
+        return raw.replace(/[^a-zA-Z0-9_-]/g, '') || null;
       }
 
-      function buildBotPayload(code) {
-        if (!code) return null;
-        var payload = 'code_' + code;
+      function getStartCode() {
+        return sanitizeStartParam(new URLSearchParams(window.location.search).get('start_code'));
+      }
+
+      function getStartPromo() {
+        return sanitizeStartParam(new URLSearchParams(window.location.search).get('start_promo'));
+      }
+
+      function buildBotPayload(prefix, value) {
+        if (!value) return null;
+        var payload = prefix + value;
         return payload.length > 64 ? payload.slice(0, 64) : payload;
+      }
+
+      function buildLandingQuery() {
+        var qs = [];
+        var code = getStartCode();
+        var promo = getStartPromo();
+        if (code) qs.push('start_code=' + encodeURIComponent(code));
+        if (promo) qs.push('start_promo=' + encodeURIComponent(promo));
+        return qs.length ? '?' + qs.join('&') : '';
       }
 
       function updateLinks() {
         var code = getStartCode();
-        var payload = buildBotPayload(code);
+        var promo = getStartPromo();
+        var payload = promo
+          ? buildBotPayload('promo_', promo)
+          : buildBotPayload('code_', code);
         var botHref = payload ? BOT_BASE + '?start=' + encodeURIComponent(payload) : BOT_BASE;
         document.querySelectorAll('a.js-bot-link').forEach(function (a) {
           a.href = botHref;
         });
 
-        var checkHref = code ? CHECK_PAGE + '?start_code=' + encodeURIComponent(code) : CHECK_PAGE;
+        var landingQs = buildLandingQuery();
+        var checkHref = CHECK_PAGE + landingQs;
         document.querySelectorAll('a[href="tg-check.html"]').forEach(function (a) {
           a.href = checkHref;
         });
 
-        var cabinetHref = code ? CABINET_URL + '?ref=' + encodeURIComponent(code) : CABINET_URL;
+        var ref = promo || code;
+        var cabinetHref = ref ? CABINET_URL + '?ref=' + encodeURIComponent(ref) : CABINET_URL;
         document.querySelectorAll('a.js-cabinet-link').forEach(function (a) {
           a.href = cabinetHref;
         });
 
-        var miniappHref = code ? MINIAPP_URL + '?startapp=' + encodeURIComponent(code) : MINIAPP_URL;
+        var startapp = promo || code;
+        var miniappHref = startapp ? MINIAPP_URL + '?startapp=' + encodeURIComponent(startapp) : MINIAPP_URL;
         document.querySelectorAll('a.js-miniapp-link').forEach(function (a) {
           a.href = miniappHref;
         });

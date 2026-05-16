@@ -317,25 +317,44 @@
     (function () {
       var BOT_BASE = 'https://t.me/annetcloud_bot';
 
-      function getStartCode() {
-        var raw = new URLSearchParams(window.location.search).get('start_code');
+      function sanitizeStartParam(raw) {
         if (!raw) return null;
         raw = raw.trim();
         if (!raw) return null;
         return raw.replace(/[^a-zA-Z0-9_-]/g, '') || null;
       }
 
-      function buildBotPayload(code) {
-        if (!code) return null;
-        var payload = 'code_' + code;
+      function getStartCode() {
+        return sanitizeStartParam(new URLSearchParams(window.location.search).get('start_code'));
+      }
+
+      function getStartPromo() {
+        return sanitizeStartParam(new URLSearchParams(window.location.search).get('start_promo'));
+      }
+
+      function buildBotPayload(prefix, value) {
+        if (!value) return null;
+        var payload = prefix + value;
         return payload.length > 64 ? payload.slice(0, 64) : payload;
+      }
+
+      function buildLandingQuery() {
+        var qs = [];
+        var code = getStartCode();
+        var promo = getStartPromo();
+        if (code) qs.push('start_code=' + encodeURIComponent(code));
+        if (promo) qs.push('start_promo=' + encodeURIComponent(promo));
+        return qs.length ? '?' + qs.join('&') : '';
       }
 
       function applyLinks() {
         var code = getStartCode();
-        var payload = buildBotPayload(code);
+        var promo = getStartPromo();
+        var payload = promo
+          ? buildBotPayload('promo_', promo)
+          : buildBotPayload('code_', code);
         var botHref = payload ? BOT_BASE + '?start=' + encodeURIComponent(payload) : BOT_BASE;
-        var backHref = code ? 'index.html?start_code=' + encodeURIComponent(code) : 'index.html';
+        var backHref = 'index.html' + buildLandingQuery();
 
         var botNode = document.getElementById('openBot');
         if (botNode) botNode.href = botHref;
