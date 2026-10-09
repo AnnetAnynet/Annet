@@ -1886,6 +1886,7 @@ html.reveal-pending .reveal.revealed {
 
 .tg-help-layout .proxy-cards {
   margin-bottom: 24px;
+  flex-direction: column;
 }
 
 .proxy-section .cabinet-alt {

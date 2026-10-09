@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Бесплатный MTProto прокси для Telegram — Annet Cloud</title>
-  <meta name="description" content="Бесплатный MTProto прокси для Telegram. Разблокируй Telegram за 10 секунд — без регистрации, навсегда бесплатно.">
-  <meta property="og:title" content="Бесплатный MTProto прокси для Telegram — Annet Cloud">
-  <meta property="og:description" content="Разблокируй Telegram за 10 секунд. Бесплатно, без регистрации.">
+  <title>Сервер подключения для Telegram - Annet Cloud</title>
+  <meta name="description" content="Сервер подключения для Telegram. Подключите за 10 секунд - без регистрации, бесплатно.">
+  <meta property="og:title" content="Сервер подключения для Telegram - Annet Cloud">
+  <meta property="og:description" content="Подключите сервер для Telegram за 10 секунд. Бесплатно, без регистрации.">
   <meta property="og:type" content="website">
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -199,7 +199,9 @@
     /* ── Connect card ── */
     .pl-connect-wrap {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
+      gap: 20px;
       padding: 0 24px 64px;
     }
 
@@ -209,7 +211,7 @@
       border-radius: var(--radius-lg);
       padding: 32px;
       width: 100%;
-      max-width: 520px;
+      max-width: 420px;
       position: relative;
       overflow: hidden;
       transition: border-color var(--transition), box-shadow var(--transition);
@@ -557,12 +559,12 @@
         </div>
 
         <h1 class="pl-hero-title reveal">
-          MTProto прокси<br>
+          Сервер подключения<br>
           для <span class="accent">Telegram</span>
         </h1>
 
         <p class="pl-hero-sub reveal">
-          Telegram не работает? Подключите прокси — это займёт 10 секунд.
+          Подключите сервер прямо в Telegram - это займёт 10 секунд.
           Бесплатно и без регистрации.
         </p>
 
@@ -570,26 +572,26 @@
     </section>
 
     <!-- ═══════════════════════════════════════
-         CONNECT CARD
+         CONNECT CARDS
     ═══════════════════════════════════════ -->
     <div class="pl-connect-wrap">
       <div class="pl-connect-card reveal">
 
-        <div class="pl-connect-label">Сервер подключения</div>
+        <div class="pl-connect-label">Сервер № 1</div>
         <div class="pl-server-row">
-          <span class="pl-server-addr">tg.knight.annet.cloud:10443</span>
+          <span class="pl-server-addr">cdn.annet.store</span>
           <span class="pl-server-badge">● Онлайн</span>
         </div>
 
         <div class="pl-connect-btn-wrap">
-          <a href="tg://proxy?server=tg.knight.annet.cloud&port=10443&secret=eeee616e6e65742e636c6f7564270d28423533666c6f776572732e636f6d"
+          <a href="tg://webproxy?server=cdn.annet.store&secret=ddca57e619f19021cb16f973d60a981038"
              class="btn btn-primary btn-hud"
              onclick="ym(108239554,'reachGoal','proxy_connect'); return true;">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
               <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
             </svg>
-            Подключить прокси
+            Подключить
           </a>
         </div>
 
@@ -601,7 +603,41 @@
 
         <div class="pl-qr-block">
           <p class="pl-qr-label">QR-код для сканирования</p>
-          <img src="assets/proxy-1.jpg" alt="QR-код для подключения прокси" class="pl-qr-img"
+          <img src="assets/proxy-1.jpg" alt="QR-код сервера № 1" class="pl-qr-img"
+               onclick="ym(108239554,'reachGoal','proxy_qr'); return true;">
+        </div>
+
+      </div>
+
+      <div class="pl-connect-card reveal">
+
+        <div class="pl-connect-label">Сервер № 2</div>
+        <div class="pl-server-row">
+          <span class="pl-server-addr">max-messenger.annet.site</span>
+          <span class="pl-server-badge">● Онлайн</span>
+        </div>
+
+        <div class="pl-connect-btn-wrap">
+          <a href="tg://webproxy?server=max-messenger.annet.site&secret=03c454786c012ecec1b80054117de6e7"
+             class="btn btn-primary btn-hud"
+             onclick="ym(108239554,'reachGoal','proxy_connect'); return true;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+            </svg>
+            Подключить
+          </a>
+        </div>
+
+        <div class="pl-divider">
+          <div class="pl-divider-line"></div>
+          <span class="pl-divider-text">или сканируйте с другого устройства</span>
+          <div class="pl-divider-line"></div>
+        </div>
+
+        <div class="pl-qr-block">
+          <p class="pl-qr-label">QR-код для сканирования</p>
+          <img src="assets/proxy-2.jpg" alt="QR-код сервера № 2" class="pl-qr-img"
                onclick="ym(108239554,'reachGoal','proxy_qr'); return true;">
         </div>
 
@@ -615,7 +651,7 @@
       <div class="proxy-after reveal" style="max-width:640px; margin:0 auto;">
         <div class="proxy-after-step">
           <span class="proxy-after-num">1</span>
-          <span>Нажмите «Подключить прокси» — Telegram откроет диалог</span>
+          <span>Нажмите «Подключить» - Telegram откроет диалог</span>
         </div>
         <div class="proxy-after-arrow">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -624,7 +660,7 @@
         </div>
         <div class="proxy-after-step">
           <span class="proxy-after-num">2</span>
-          <span>Примите подключение — значок сервера появится в настройках</span>
+          <span>Примите подключение - значок сервера появится в настройках</span>
         </div>
         <div class="proxy-after-arrow">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -633,7 +669,7 @@
         </div>
         <div class="proxy-after-step">
           <span class="proxy-after-num">3</span>
-          <span>Telegram заработает — пользуйтесь без ограничений</span>
+          <span>Откройте чаты и пишите сообщения как обычно</span>
         </div>
       </div>
     </div>
