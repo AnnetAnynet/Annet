@@ -1889,6 +1889,13 @@ html.reveal-pending .reveal.revealed {
   flex-direction: column;
 }
 
+.proxy-channel-note {
+  margin: 0 0 24px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
 .proxy-section .cabinet-alt {
   margin-top: 8px;
   margin-bottom: 0;
