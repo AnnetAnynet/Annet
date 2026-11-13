@@ -777,9 +777,9 @@
           var yclidPayload = 'y_' + yclid + suffix;
           return yclidPayload.length <= 64 ? yclidPayload : ('y_' + yclid);
         }
-        if (isTrial) return 't';
         if (promo) return buildBotPayload('promo_', promo);
         if (code) return buildBotPayload('code_', code);
+        if (isTrial) return 't';
         return null;
       }
 
